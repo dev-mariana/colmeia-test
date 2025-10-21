@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  pg:
+    image: bitnami/postgresql
+    container_name: pg
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker@123
+      - POSTGRESQL_DATABASE=payment-system
+    volumes:
+      - pg_data:/var/lib/pg/data
+
+volumes:
+  pg_data:
