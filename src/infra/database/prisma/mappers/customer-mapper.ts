@@ -10,7 +10,7 @@ export class CustomerMapper {
       document: customer.document,
       phone: customer.phone,
       created_at: customer.created_at,
-      updated_at: customer.updated_at,
+      updated_at: customer.updated_at ?? null,
     };
   }
 
@@ -22,7 +22,7 @@ export class CustomerMapper {
       document: raw.document,
       phone: raw.phone ?? undefined,
       created_at: raw.created_at,
-      updated_at: raw.updated_at,
+      updated_at: raw.updated_at ?? null,
     };
   }
 }

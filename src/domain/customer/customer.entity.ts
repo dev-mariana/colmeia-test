@@ -5,5 +5,5 @@ export class Customer {
   document: string;
   phone?: string;
   created_at: Date;
-  updated_at: Date;
+  updated_at?: Date | null;
 }
