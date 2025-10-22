@@ -3,7 +3,7 @@ version: '3.8'
 services:
   pg:
     image: bitnami/postgresql
-    container_name: pg
+    container_name: postgres
     ports:
       - 5432:5432
     environment:
