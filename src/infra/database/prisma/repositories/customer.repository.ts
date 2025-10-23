@@ -8,13 +8,13 @@ import { PrismaService } from '../prisma.service';
 export class CustomerRepository implements ICustomerRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(customer: Partial<Customer>): Promise<Customer> {
+  async create(data: Partial<Customer>): Promise<Customer> {
     const createdCustomer = await this.prisma.customer.create({
       data: {
-        name: customer?.name ?? '',
-        email: customer?.email ?? '',
-        document: customer?.document ?? '',
-        phone: customer?.phone ?? '',
+        name: data.name ?? '',
+        email: data.email ?? '',
+        document: data.document ?? '',
+        phone: data.phone ?? null,
       },
     });
 
@@ -26,9 +26,17 @@ export class CustomerRepository implements ICustomerRepository {
       where: { email },
     });
 
-    if (!customer) {
-      return null;
-    }
+    if (!customer) return null;
+
+    return CustomerMapper.toDomain(customer);
+  }
+
+  async findById(id: string): Promise<Customer | null> {
+    const customer = await this.prisma.customer.findUnique({
+      where: { id },
+    });
+
+    if (!customer) return null;
 
     return CustomerMapper.toDomain(customer);
   }
