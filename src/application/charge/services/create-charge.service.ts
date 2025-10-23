@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { BadRequestException } from 'src/common/filters/errors/bad-request-error';
 import { NotFoundException } from 'src/common/filters/errors/not-found-error';
-import { ChargeStatus } from 'src/domain/charge/charge.entity';
+import { ChargeStatus, PaymentMethod } from 'src/domain/charge/charge.entity';
 import { ChargeRepository } from 'src/infra/database/prisma/repositories/charge.repository';
 import { CustomerRepository } from 'src/infra/database/prisma/repositories/customer.repository';
 import {
@@ -20,6 +21,17 @@ export class CreateChargeService {
 
     if (!customer) {
       throw new NotFoundException('Customer not found.');
+    }
+
+    if (data.payment_method === PaymentMethod.BOLETO && !data.due_date) {
+      throw new BadRequestException('Boleto requires due_date.');
+    }
+
+    if (
+      data.payment_method === PaymentMethod.CREDIT_CARD &&
+      !data.installments
+    ) {
+      throw new BadRequestException('Credit Card requires installments.');
     }
 
     const newCharge = await this.chargeRepository.create({

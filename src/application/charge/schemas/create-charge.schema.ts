@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const createChargeSchema = z.object({
-  amount: z.float32(),
+  amount: z.number().positive(),
   currency: z.string().min(1),
   customer_id: z.string().min(1, 'customerId is required'),
   payment_method: z.enum(['Pix', 'Credit Card', 'Boleto']),
