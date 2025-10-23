@@ -66,7 +66,6 @@ export class CreateChargeService {
       status: newCharge.status,
       due_date: newCharge.due_date || null,
       installments: newCharge.installments || null,
-      idempotency_key: newCharge.idempotency_key || null,
       created_at: newCharge.created_at,
       updated_at: newCharge.updated_at || null,
     };
