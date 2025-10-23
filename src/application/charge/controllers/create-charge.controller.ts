@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Headers, Post } from '@nestjs/common';
 import { ZodValidationPipe } from 'src/common/pipes/zod-validation.pipe';
 import {
   CreateChargeRequest,
@@ -14,7 +14,8 @@ export class CreateChargeController {
   @Post()
   async create(
     @Body(new ZodValidationPipe(createChargeSchema)) body: CreateChargeRequest,
+    @Headers('idempotency-key') idempotency_key?: string,
   ): Promise<CreateChargeResponse> {
-    return this.createChargeService.create(body);
+    return this.createChargeService.create(body, idempotency_key);
   }
 }

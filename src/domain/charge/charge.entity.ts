@@ -7,6 +7,7 @@ export class Charge {
   customer_id: string;
   due_date?: Date;
   installments?: number;
+  idempotency_key?: string;
   created_at: Date;
   updated_at?: Date | null;
 }

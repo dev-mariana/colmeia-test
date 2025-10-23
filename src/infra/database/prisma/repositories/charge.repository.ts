@@ -20,9 +20,20 @@ export class ChargeRepository implements IChargeRepository {
         status: data.status ?? '',
         due_date: data.due_date ?? '',
         installments: data.installments ?? 0,
+        idempotency_key: data.idempotency_key ?? undefined,
       },
     });
 
     return ChargeMapper.toDomain(createdCharge);
+  }
+
+  async findByIdempotencyKey(idempotency_key: string): Promise<Charge | null> {
+    const charge = await this.prisma.charge.findUnique({
+      where: { idempotency_key },
+    });
+
+    if (!charge) return null;
+
+    return ChargeMapper.toDomain(charge);
   }
 }

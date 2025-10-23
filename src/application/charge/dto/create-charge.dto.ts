@@ -18,6 +18,7 @@ export class CreateChargeResponse {
   status: ChargeStatus;
   installments: number | null;
   due_date: Date | null;
+  idempotency_key: string | null;
   created_at: Date;
   updated_at: Date | null;
 }

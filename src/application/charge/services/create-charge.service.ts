@@ -16,7 +16,19 @@ export class CreateChargeService {
     private readonly customerRepository: CustomerRepository,
   ) {}
 
-  async create(data: CreateChargeRequest): Promise<CreateChargeResponse> {
+  async create(
+    data: CreateChargeRequest,
+    idempotency_key?: string,
+  ): Promise<CreateChargeResponse> {
+    if (idempotency_key) {
+      const existing =
+        await this.chargeRepository.findByIdempotencyKey(idempotency_key);
+
+      if (existing) {
+        throw new BadRequestException('Duplicate charge request.');
+      }
+    }
+
     const customer = await this.customerRepository.findById(data.customer_id);
 
     if (!customer) {
@@ -42,6 +54,7 @@ export class CreateChargeService {
       due_date: data.due_date || undefined,
       status: ChargeStatus.PENDING,
       installments: data.installments || undefined,
+      idempotency_key: idempotency_key || undefined,
     });
 
     return {
@@ -53,6 +66,7 @@ export class CreateChargeService {
       status: newCharge.status,
       due_date: newCharge.due_date || null,
       installments: newCharge.installments || null,
+      idempotency_key: newCharge.idempotency_key || null,
       created_at: newCharge.created_at,
       updated_at: newCharge.updated_at || null,
     };

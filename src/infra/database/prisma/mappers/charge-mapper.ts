@@ -16,6 +16,7 @@ export class ChargeMapper {
       status: charge.status,
       due_date: charge.due_date,
       installments: charge.installments,
+      idempotency_key: charge.idempotency_key,
       created_at: charge.created_at,
       updated_at: charge.updated_at,
     };
@@ -31,6 +32,7 @@ export class ChargeMapper {
       status: raw.status as ChargeStatus,
       due_date: raw.due_date ?? undefined,
       installments: raw.installments ?? undefined,
+      idempotency_key: raw.idempotency_key ?? undefined,
       created_at: raw.created_at,
       updated_at: raw.updated_at,
     };
