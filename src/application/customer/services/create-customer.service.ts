@@ -11,9 +11,11 @@ export class CreateCustomerService {
   constructor(private readonly customerRepository: CustomerRepository) {}
 
   async create(data: CreateCustomerRequest): Promise<CreateCustomerResponse> {
-    const existingCustomer = await this.customerRepository.findByEmail(
-      data.email,
-    );
+    const existingCustomer =
+      await this.customerRepository.findByEmailOrDocument(
+        data.email,
+        data.document,
+      );
 
     if (existingCustomer) {
       throw new ConflictException();

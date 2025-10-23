@@ -11,9 +11,9 @@ export class CustomerRepository implements ICustomerRepository {
   async create(data: Partial<Customer>): Promise<Customer> {
     const createdCustomer = await this.prisma.customer.create({
       data: {
-        name: data.name ?? '',
-        email: data.email ?? '',
-        document: data.document ?? '',
+        name: data.name!,
+        email: data.email!,
+        document: data.document!,
         phone: data.phone ?? null,
       },
     });
@@ -21,9 +21,14 @@ export class CustomerRepository implements ICustomerRepository {
     return CustomerMapper.toDomain(createdCustomer);
   }
 
-  async findByEmail(email: string): Promise<Customer | null> {
-    const customer = await this.prisma.customer.findUnique({
-      where: { email },
+  async findByEmailOrDocument(
+    email: string,
+    document: string,
+  ): Promise<Customer | null> {
+    const customer = await this.prisma.customer.findFirst({
+      where: {
+        OR: [{ email }, { document }],
+      },
     });
 
     if (!customer) return null;
