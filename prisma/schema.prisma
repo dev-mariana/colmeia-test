@@ -22,17 +22,18 @@ model Customer {
 }
 
 model Charge {
-  id             String    @id @default(cuid())
-  amount         Float
-  currency       String
-  payment_method String
-  status         String
-  customer_id    String
-  customer       Customer  @relation(fields: [customer_id], references: [id])
-  due_date       DateTime?
-  installments   Int?
-  created_at     DateTime  @default(now())
-  updated_at     DateTime?  @updatedAt
+  id              String    @id @default(cuid())
+  amount          Float
+  currency        String
+  payment_method  String
+  status          String
+  customer_id     String
+  customer        Customer  @relation(fields: [customer_id], references: [id])
+  due_date        DateTime?
+  installments    Int?
+  idempotency_key String?   @unique
+  created_at      DateTime  @default(now())
+  updated_at      DateTime? @updatedAt
 
   @@map("charge")
 }
