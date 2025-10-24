@@ -86,7 +86,7 @@ cp .env.example .env
 Edite o arquivo `.env` com suas configurações:
 
 ```env
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/swiftpag_test"
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/payment-system"
 ```
 
 ## 🚀 Executando o Projeto
