@@ -285,9 +285,7 @@ src/
 
 O projeto mantém alta cobertura de testes com:
 
-- **Testes Unitários**: Para serviços e lógica de negócio
 - **Testes E2E**: Para endpoints da API
-- **Testes de Integração**: Para repositórios e banco de dados
 
 ## 📝 Licença
 
