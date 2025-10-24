@@ -1,10 +1,10 @@
-# SwiftPag Test - Sistema de Cobrança
+# Sistema de Pagamentos
 
 Sistema de gerenciamento de clientes e cobranças desenvolvido com NestJS, Prisma e PostgreSQL.
 
 ## 🚀 Sobre o Projeto
 
-O SwiftPag Test é uma API REST para gerenciamento de clientes e cobranças, desenvolvida como parte de um teste técnico. O sistema permite:
+O Sistema de Pagamentos é uma API REST para gerenciamento de clientes e cobranças, desenvolvida como parte de um teste técnico. O sistema permite:
 
 - **Gestão de Clientes**: Criação e consulta de clientes com validação de dados únicos
 - **Gestão de Cobranças**: Criação de cobranças com diferentes métodos de pagamento (PIX, Cartão de Crédito, Boleto)
