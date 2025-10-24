@@ -11,16 +11,16 @@ export class ChargeRepository implements IChargeRepository {
   async create(data: Partial<Charge>): Promise<Charge> {
     const createdCharge = await this.prisma.charge.create({
       data: {
-        amount: data?.amount ?? 0,
-        currency: data.currency ?? '',
+        amount: data.amount!,
+        currency: data.currency!,
         customer: {
-          connect: { id: data.customer_id },
+          connect: { id: data.customer_id! },
         },
-        payment_method: data.payment_method ?? '',
-        status: data.status ?? '',
-        due_date: data.due_date ?? '',
-        installments: data.installments ?? 0,
-        idempotency_key: data.idempotency_key ?? undefined,
+        payment_method: data.payment_method!,
+        status: data.status!,
+        due_date: data.due_date || null,
+        installments: data.installments || null,
+        idempotency_key: data.idempotency_key || null,
       },
     });
 
