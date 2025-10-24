@@ -1,9 +1,21 @@
 {
   "moduleFileExtensions": ["js", "json", "ts"],
-  "rootDir": ".",
+  "rootDir": "..",
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
-  }
+  },
+  "moduleNameMapper": {
+    "^src/(.*)$": "<rootDir>/src/$1",
+    "^@app/(.*)$": "<rootDir>/../src/$1",
+    "^generated/prisma$": "<rootDir>/generated/prisma"
+  },
+  "collectCoverageFrom": ["src/**/*.ts"],
+  "coverageDirectory": "./test/coverage-e2e",
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "\\.spec\\.ts$",
+    "\\.e2e-spec\\.ts$"
+  ]
 }
