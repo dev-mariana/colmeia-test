@@ -2,20 +2,6 @@
 
 Sistema de gerenciamento de clientes e cobranças desenvolvido com NestJS, Prisma e PostgreSQL.
 
-## 📋 Índice
-
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Arquitetura](#arquitetura)
-- [Pré-requisitos](#pré-requisitos)
-- [Instalação](#instalação)
-- [Configuração](#configuração)
-- [Executando o Projeto](#executando-o-projeto)
-- [API Endpoints](#api-endpoints)
-- [Testes](#testes)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Contribuição](#contribuição)
-
 ## 🚀 Sobre o Projeto
 
 O SwiftPag Test é uma API REST para gerenciamento de clientes e cobranças, desenvolvida como parte de um teste técnico. O sistema permite:
